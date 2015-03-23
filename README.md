@@ -4,7 +4,7 @@
 2. Create new payment method with the name `paypalrest`.
 3. From the context menu of the new payment method select `Intall method` to create all required method settings.
 4. [Create PayPal REST application](https://developer.paypal.com/webapps/developer/applications/myapps) (or use existing one) to obtain the `Client ID` and `Secret`.
-5. Open payment method configuration by selecting `Configuration` from the context menu and fill settings values as described in [Configuration][].
+5. Open payment method configuration by selecting `Configuration` from the context menu and fill settings values as described in [configuration](#configuration).
 
 ## Configuration
 
