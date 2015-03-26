@@ -187,6 +187,16 @@ class SimpleCartPayPalRestPaymentGateway extends SimpleCartGateway
 				$details[$subTotalAmountDiff > 0 ? 'fee' : 'discount'] += $subTotalAmountDiff;
 			}
 
+			if ($details['discount']) {
+				$item = new Item();
+				$item
+					->setName($this->modx->lexicon('simplecart.cart.discount'))
+					->setQuantity(1)
+					->setPrice($details['discount'])
+					->setCurrency($currency);
+				$items->addItem($item);
+			}
+
 			$subTotalAmount = $totalAmount - array_sum(array_diff_key($details, array_flip(array(
 				'discount',
 			))));
@@ -195,15 +205,6 @@ class SimpleCartPayPalRestPaymentGateway extends SimpleCartGateway
 				$amountDetails = new Details();
 				if ($details['tax']) {
 					$amountDetails->setTax($details['tax']);
-				}
-				if ($details['discount']) {
-					$item = new Item();
-					$item
-						->setName($this->modx->lexicon('simplecart.cart.discount'))
-						->setQuantity(1)
-						->setPrice($details['discount'])
-						->setCurrency($currency);
-					$items->addItem($item);
 				}
 				if ($details['delivery']) {
 					$amountDetails->setShipping($details['delivery']);
